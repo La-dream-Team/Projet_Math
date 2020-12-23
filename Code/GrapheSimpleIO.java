@@ -4,22 +4,74 @@ package Code;
 import java.util.Scanner;
 
 public final class GrapheSimpleIO{
+    // methodes auxiliaires
 
-    public static Scanner scan = new Scanner(System.in);
+    // on lui donne un matrcie et un numero de ligne et on recupère la ligne corresponendente au numero
+    public static int[] getLine(int x, int[][] matrice){
+        return matrice[x-1];
+    }
 
-    public static int[][] getmatrix(int len){
 
-        int[][] mat = new int [len+1][len+1];
+
+    // la methode prend en argument la taille de la matrice qui est lue en entrée
+    public static int[][] getmatrix(int n){
+        // on crée des variables locals
+        Scanner scan = new Scanner(system.in); // un scanner pour recuperer les valeurs de la matrice
+        int[][] mat = new int [n+1][n+1]; 
         
-        //System.out.println("Entrez tous les éléménet ligne par ligne :");
-        for(int x = 1 ; x <= len ; x++){
-            for(int y = 1 ; y <= len ; y++){
+        //System.out.println("Entrez tous les elemenets ligne par ligne :");
+        // on ecrit dans les casses du tableau de l'indice 1 a n, dans les deux dimensions  
+        for(int x = 1 ; x <= n ; x++){
+            for(int y = 1 ; y <= n ; y++){
                 mat[x][y] = scan.nextInt();
             }
         }
 
         return mat;
     }
+
+    public static int[] computeAdjacentyList (int x, int[][] matrix){
+        // declaration des valiable local 
+        int len = graph.length; // on recupère la taille de la matrcice
+        int[] line = getLine(x, matrix);
+        int [] ret;
+
+        // variables pour compteur les adjacences de la ligne
+        int compteur = 0;
+        int [] tab = new int[len];
+        tab[0] = x;
+        for(int j=1; j<= len ; j++){
+            if(line[j] != 0){
+                tab[compteur] = j;
+                compteur += 1;
+            }
+        }
+        
+        // le compteur est égale au nombre d'élément de la ligne
+        // ajoute 2 case pour le numero de ligne qui est dans la case 0 et le 0 dans la dernière case 
+        ret = new int[compteur+2];
+
+        for(int i=0; i<(compteur+1); i++){
+            ret[i] = tab[i];
+        }
+        // fin de ligne
+        ret[compteur+1] = 0;
+
+        return ret; 
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static void getGraph(int[][] graph){
         int len = graph.length;
@@ -49,9 +101,7 @@ public final class GrapheSimpleIO{
         }
     }
 
-    public int[] getLine(int x){
-        return this.matrice[x-1];
-    }
+    
 
     public static int[][] getlists(int[][] matrice){
         int len = matrice.length; 
