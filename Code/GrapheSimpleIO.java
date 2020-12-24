@@ -11,7 +11,36 @@ public final class GrapheSimpleIO{
         return matrice[x-1];
     }
 
+    // methode qui renvoie l'entier ecrit sur le flot de lecture
+    public static int lireEntier(){
+        Scanner scan = new Scanner(system.in);
 
+        return scan.nextInt();
+    }
+
+    // methode qui affiche une liste d'adjacence
+    public static void afficherlistAdj(int[] list){
+        if((list.length > 1) && (list[1] != 0)){
+            System.out.printf("%d : ", list[0]);
+            
+            // on affiche tous les numéros de case 
+            for(int i=1 ; i<list.length; i++){
+                if(list[i] !=0){
+                    System.out.printf("%d ",list[i]);
+                }
+            }
+        }
+        else{
+            // si la liste est vide on affiche juste 0
+            if(list.length > 1){
+                System.out.printf("0\n");
+            }
+            else{
+                // si la liste n'est pas vide on afficher la ligne et 0 
+                System.out.printf("%d : 0\n", list[0]);
+            }
+        }
+    }
 
     // la methode prend en argument la taille de la matrice qui est lue en entrée
     public static int[][] getmatrix(int n){
@@ -48,20 +77,38 @@ public final class GrapheSimpleIO{
         }
         
         // le compteur est égale au nombre d'élément de la ligne
-        // ajoute 2 case pour le numero de ligne qui est dans la case 0 et le 0 dans la dernière case 
-        ret = new int[compteur+2];
+        // ajoute 2 case pour le numero de ligne qui est dans la case 0  
+        ret = new int[compteur+1];
 
         for(int i=0; i<(compteur+1); i++){
             ret[i] = tab[i];
         }
-        // fin de ligne
-        ret[compteur+1] = 0;
 
         return ret; 
     }
 
 
+    public static void exo1TP2(){
+        // on recupère la description lue
+        int len = lireEntier();
 
+        // lecture du graphique de taille len
+        int[][] graph = getmatrix(len);
+
+        // on recupère l'entier n pour calculer la liste d'adjacence
+        int n = lireEntier();
+
+        // on verifie qu'il soit conforme
+        if((n<= len) && (n>0)){
+            int[] listn = computeAdjacentyList(n, graph);
+
+            // on affiche la liste d'adjacence
+            afficherlistAdj(listn);
+        }
+        else{
+            System.err.println("l'entier entree est incorect !");
+        }
+    }
 
 
 
