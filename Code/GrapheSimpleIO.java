@@ -3,7 +3,13 @@ package Code;
 
 import java.util.Scanner;
 
+import jdk.javadoc.internal.doclets.formats.html.resources.standard;
+
 public final class GrapheSimpleIO{
+    // attribut(s)
+    private static Scanner scan;
+
+
     // methodes auxiliaires
 
     // on lui donne un matrcie et un numero de ligne et on recupère la ligne corresponendente au numero
@@ -11,12 +17,8 @@ public final class GrapheSimpleIO{
         return matrice[x-1];
     }
 
-    // methode qui renvoie l'entier ecrit sur le flot de lecture
-    public static int lireEntier(){
-        Scanner scan = new Scanner(system.in);
 
-        return scan.nextInt();
-    }
+    // TP2 Exercice 1
 
     // methode qui affiche une liste d'adjacence
     public static void afficherlistAdj(int[] list){
@@ -45,7 +47,6 @@ public final class GrapheSimpleIO{
     // la methode prend en argument la taille de la matrice qui est lue en entrée
     public static int[][] getmatrix(int n){
         // on crée des variables locals
-        Scanner scan = new Scanner(system.in); // un scanner pour recuperer les valeurs de la matrice
         int[][] mat = new int [n+1][n+1]; 
         
         //System.out.println("Entrez tous les elemenets ligne par ligne :");
@@ -73,6 +74,9 @@ public final class GrapheSimpleIO{
             if(line[j] != 0){
                 tab[compteur] = j;
                 compteur += 1;
+            }
+            else{
+                break;
             }
         }
         
@@ -110,43 +114,80 @@ public final class GrapheSimpleIO{
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-    public static void getGraph(int[][] graph){
-        int len = graph.length;
-        int compteur = 0;
-        while(compteur != len){
-            int line = scan.nextInt();
-            int next; 
-            int retlen = 0;
-            int [] tab = new int[len];
-            do{
-                next = scan.nextInt();
-                if(next != 0){
-                    tab[retlen]= next;
-                    retlen += 1;
-                }
-                else 
-                    break;
-            }while(true);
-
-            int[] retline = new int[compteur];
-
-            for(int i = 0; i < compteur; i++){
-                retline[i] = tab[i];
-            }
-
-            graph[line] = retline;
-        }
+    // TP2 Exercice 2
+    // a) 
+    public static void initialize(){
+        scan = new Scanner(System.in);
     }
+
+    // b)
+    // la methode get matrix a ete changer au dessus
+
+    // c)
+
+    public static int[][] getgraph(int[][] graph){
+        // variable(s) local 
+        int len = graph.length;
+        int compteur;
+        int[] tab = new int[len];
+        int current;
+
+        // len-1 tours de boucle
+        for(int i=1 ; i< len ; i++){
+            // variavble de la boucle
+            current = scan.nextInt();
+
+            // si l'utisateur a terminer de saisir les lists
+            if(current == 0){
+                break;
+            }
+            else{
+                compteur = 1;
+                tab[0] = current;
+
+                // saisie de la liste d'adjacence
+                do{
+                    // scanner
+                    current = scan.nextInt();
+
+                    // verrification
+                    if(current == 0){
+                        break;
+                    }
+                    else{
+                        tab[compteur] = current;
+                        compteur += 1;
+                    }
+                }while(true);
+
+                // copie dans une liste de la bonne taille
+                int[] finalTab = new int[compteur];
+
+                for(int j=0 ; j<comtpeur ; j++){
+                    finalTab[j] = tab[j];
+                }
+
+                // on ajoute la liste d'adjacence dans la variable graph
+                graph[finalTab[0]] = finalTab;
+            }
+        }
+        return graph;
+    }
+
+    // d)
+
+    // methode qui renvoie l'entier ecrit sur le flot de lecture
+    public static int lireEntier(){
+        return scan.nextInt();
+    }
+
+
+
+
+
+
+
+   
 
     
 
