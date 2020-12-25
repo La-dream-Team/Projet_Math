@@ -94,13 +94,13 @@ public final class GrapheSimpleIO{
 
     public static void exo1TP2(){
         // on recupère la description lue
-        int len = lireEntier();
+        int len = getInt();
 
         // lecture du graphique de taille len
         int[][] graph = getmatrix(len);
 
         // on recupère l'entier n pour calculer la liste d'adjacence
-        int n = lireEntier();
+        int n = getInt();
 
         // on verifie qu'il soit conforme
         if((n<= len) && (n>0)){
@@ -175,9 +175,37 @@ public final class GrapheSimpleIO{
     }
 
     // d)
+    // prend en parametre une matrice d'adjacence 
+    public static void printMatrix(int[][] graph){
+        for(int x = 1; x < graph.length ; x++){
+            for(int y = 1 ; y < graph.length; y++){
+                System.out.printf("%2d", graph[x][j]);
+            }
+            System.out.println();
+        }
+    }
 
+    // e)
+    public static void printGraph(int[][] graph){
+        // afficher ligne pare ligne 
+        for(int i=1 ; i<graph.length; i++){
+            afficherlistAdj(graph[i]);
+        }
+    }
+
+    // f) 
+    public static void rawPrintGraph(int[][] graph){
+        for(int i=1 ; i<graph.length; i++){
+            for(int value : graph[i]){
+                System.out.printf("%2d ", value);
+            }
+            System.out.println();
+        }
+    }
+
+    // g)
     // methode qui renvoie l'entier ecrit sur le flot de lecture
-    public static int lireEntier(){
+    public static int getInt(){
         return scan.nextInt();
     }
 
@@ -223,10 +251,6 @@ public final class GrapheSimpleIO{
         return ret; 
     }
 
-    private void printNbr( int current){
-        System.out.printf(" %3d", current);
-    }
-
     public static void printgraph(int[][] adj){
         for(int line=1; line < adj.length; line ++){
             for(int i = 0 ; i< adj[line].length ; i++){
@@ -240,15 +264,7 @@ public final class GrapheSimpleIO{
         }
     }
 
-    // prend en para une matrice d'adjacence 
-    public static void printmatrix(int[][] graph){
-        for(int x = 1; x < graph.length ; x++){
-            for(int y = 1 ; y < graph.length; y++){
-                System.out.printf("%3d", graph[x][j]);
-            }
-            System.out.println();
-        }
-    }
+    
     
 
    
