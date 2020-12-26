@@ -3,9 +3,7 @@ package Code;
 
 import java.util.Scanner;
 
-import jdk.javadoc.internal.doclets.formats.html.resources.standard;
-
-public final class GrapheSimpleIO{
+public final class GraphSimpleIO{
     // attribut(s)
     private static Scanner scan;
 
@@ -62,7 +60,7 @@ public final class GrapheSimpleIO{
 
     public static int[] computeAdjacentyList (int x, int[][] matrix){
         // declaration des valiable local 
-        int len = graph.length; // on recupère la taille de la matrcice
+        int len = matrix.length; // on recupère la taille de la matrcice
         int[] line = getLine(x, matrix);
         int [] ret;
 
@@ -163,7 +161,7 @@ public final class GrapheSimpleIO{
                 // copie dans une liste de la bonne taille
                 int[] finalTab = new int[compteur];
 
-                for(int j=0 ; j<comtpeur ; j++){
+                for(int j=0 ; j<compteur ; j++){
                     finalTab[j] = tab[j];
                 }
 
@@ -179,7 +177,7 @@ public final class GrapheSimpleIO{
     public static void printMatrix(int[][] graph){
         for(int x = 1; x < graph.length ; x++){
             for(int y = 1 ; y < graph.length; y++){
-                System.out.printf("%2d", graph[x][j]);
+                System.out.printf("%2d", graph[x][y]);
             }
             System.out.println();
         }
@@ -190,6 +188,7 @@ public final class GrapheSimpleIO{
         // afficher ligne pare ligne 
         for(int i=1 ; i<graph.length; i++){
             afficherlistAdj(graph[i]);
+            System.out.println();
         }
     }
 
@@ -210,63 +209,10 @@ public final class GrapheSimpleIO{
     }
 
 
+    // h)
+    // ????????????????????,
+    private GraphSimpleIO(){}
 
-
-
-
-
-   
 
     
-
-    public static int[][] getlists(int[][] matrice){
-        int len = matrice.length; 
-        int [][] ret = new int[len+1][];
-
-        for(int line=1; line <= len ; line++){
-            boolean empty = true;
-            int compteur = 0;
-            int [] tab = new int[len];
-            for(int j=1; j<= len ; j++){
-                if(matrice[line][j] != 0){
-                    if(empty){
-                        tab[compteur] = line;
-                        compteur += 1;
-                    }
-                    empty = false;
-                    tab[compteur] = j;
-                    compteur += 1;
-                }
-            }
-            
-            int[] current_line = new int[compteur];
-
-            for(int i=0; i<compteur; i++){
-                current_line[i] = tab[i];
-            }
-
-            ret[line] = current_line;
-        }
-
-        return ret; 
-    }
-
-    public static void printgraph(int[][] adj){
-        for(int line=1; line < adj.length; line ++){
-            for(int i = 0 ; i< adj[line].length ; i++){
-                if(i==0)
-                    System.out.print( adj[line][i]+ " : ");
-                else
-                    System.out.fprint("%1d", adj[line][i]);
-            }
-
-            System.out.fprint("%1d\n", 0);
-        }
-    }
-
-    
-    
-
-   
-
 }
