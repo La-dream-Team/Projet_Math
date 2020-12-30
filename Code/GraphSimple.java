@@ -97,7 +97,7 @@ public class GraphSimple{
         {
             for(int i = 1; i < this.AdjacencyListTable.length+1; i++)
             {
-                if(x == this.AdjacencyMatrix[i][0])
+                if(x == this.AdjacencyListTable[i][0])
                 {
                     index = i;
                 }
