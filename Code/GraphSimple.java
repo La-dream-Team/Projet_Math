@@ -92,16 +92,18 @@ public class GraphSimple{
     //Fonction qui renvoi la liste d'adjacence d'un sommet x
     public int[] getAdjacencyList(int x)
     {
+        int index;
         if(isVertex(x))
         {
             for(int i = 1; i < this.AdjacencyListTable.length+1; i++)
             {
                 if(x == this.AdjacencyMatrix[i][0])
                 {
-                    return this.AdjacencyListTable[i];
+                    index = i;
                 }
             }
         }
+        return this.AdjacencyListTable[index];
     }
 
     //Pour stocker la matrice d'adjacence voulue
