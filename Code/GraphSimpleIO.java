@@ -32,7 +32,7 @@ public final class GraphSimpleIO{
         }
         else{
             // si la liste est vide on affiche juste 0
-            if(list.length > 1){
+            if(list.length <= 1){
                 System.out.printf("0\n");
             }
             else{
@@ -73,11 +73,14 @@ public final class GraphSimpleIO{
                 tab[compteur] = j;
                 compteur += 1;
             }
+            /* Pk un break ici? Ce n'est pas necessaire non? Car sinon tu vas pas lire toute la ligne de la matrice
             else{
                 break;
             }
+            */
         }
         
+        //On cree un tableau de la bonne taille
         // le compteur est égale au nombre d'élément de la ligne
         // ajoute 2 case pour le numero de ligne qui est dans la case 0  
         ret = new int[compteur+1];
