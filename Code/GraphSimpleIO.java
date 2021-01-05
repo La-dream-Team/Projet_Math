@@ -73,11 +73,10 @@ public final class GraphSimpleIO{
                 tab[compteur] = j;
                 compteur += 1;
             }
-            /* Pk un break ici? Ce n'est pas necessaire non? Car sinon tu vas pas lire toute la ligne de la matrice
+            
             else{
                 break;
             }
-            */
         }
         
         //On cree un tableau de la bonne taille

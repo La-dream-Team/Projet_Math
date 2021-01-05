@@ -12,8 +12,7 @@ public class GraphSimple{
 
     public GraphSimple(int n)
     {
-        //this.AdjacencyMatrix = new int[n+1][n+1];
-        this.AdjacencyListTable = new int[n+1][0]; //N sommets et 0 aretes (new int[n+1][])
+        this.AdjacencyListTable = new int[n+1][1]; //N sommets et 0 aretes (new int[n+1][])
     }
 
     // c)
@@ -32,6 +31,7 @@ public class GraphSimple{
             if(x == this.AdjacencyMatrix[i][0])
             {
                 ret = true;
+                break;
             }
         }
         return ret; 
@@ -89,6 +89,22 @@ public class GraphSimple{
         }
     }
 
+    //Fonction qui renvoi la ligne de la matrice par rapport à un sommet x
+    public static int[] getMatrixLine(int x, int[][] matrix)
+    {
+        int index = 0;
+        for(int i = 1; i < matrix.length; i++)
+        {
+            if(x == matrix[i][0])
+            {
+                index = i;
+                break;
+            }
+        }
+        
+        return matrix[index]; 
+    }
+
     //Fonction qui renvoi la liste d'adjacence d'un sommet x
     public int[] getAdjacencyList(int x)
     {
@@ -100,29 +116,113 @@ public class GraphSimple{
                 if(x == this.AdjacencyListTable[i][0])
                 {
                     index = i;
+                    break;
                 }
             }
         }
         return this.AdjacencyListTable[index];
     }
 
+    //Fonction pour calculer une liste d'adjacence à partir d'une ligne de la matrice d'adjacence
+    public static int[] getAdjacencyListFromMatrix (int x, int[][] matrix)
+    {
+        
+        int len = matrix.length-1; 
+        int[] line = getMatrixLine(x, matrix);
+        int [] ret;
+
+        // variables pour compteur les adjacences de la ligne
+        int compteur = 0;
+        int [] tab = new int[len];
+        tab[0] = x;
+        for(int j=1; j<= len ; j++){
+            if(line[j] == 1)
+            {
+                tab[compteur] = i;
+                compteur ++;
+            }
+        }
+        
+        //On cree un tableau de la bonne taille
+        // le compteur est égale au nombre d'élément de la ligne
+        // ajoute 2 case pour le numero de ligne qui est dans la case 0  
+        ret = new int[compteur+1];
+
+        for(int i=0; i<(compteur+1); i++){
+            ret[i] = tab[i];
+        }
+
+        return ret; 
+    }
+
+    //Fonction pour calculer une ligne de la matrice d'adjacence à partir d'une liste d'adjacence 
+    public static int[] getMatrixFromAdjacencyList(int x, int[][] matrix)
+    {
+        
+        int len = matrix.length-1; 
+        int[] line = getMatrixLine(x, matrix);
+        int [] ret = new int[n+1];
+
+        //initialiser la ligne de la matrice 
+        ret[0] = x;
+        for(int i = 1; i < len; i++)
+        {
+            ret[i] = 0;        
+        }
+        
+        //On parcour la liste d'adjacence du sommet x pour trouver les sommets adjacents à celui ci
+        for(int j=1; j<= len ; j++){
+            if(line[j] != 0)
+            {
+                //On met à 1 les sommets adjacents à notre sommet x 
+                ret[line[j]] = 1;
+            }
+        }
+        return ret; 
+    }
+
+    public boolean isAdjacencyListTableEmpty(int[][] adjacencyListTable)
+    {
+        boolean ret = false;
+        for(int i = 0; i < this.AdjacencyListTable.length; i++)
+        {
+            if(this.AdjacencyListTable[i].length <= 1)
+            {
+                ret = true;
+            }
+        } 
+        return ret;
+    }
+
     //Pour stocker la matrice d'adjacence voulue
     public void setAdjacencyMatrix(int[][] matrix)
     {
         this.AdjacencyMatrix = matrix;
+        
         //Si le tableau de listes d'adjacence est vide, alors :
-        //Determination du tableau de listes d'adjacence à partir de la matrice d'adjacence
+        if(isAdjacencyListTableEmpty(this.AdjacencyListTable))
+        {
+            //Determination du tableau de listes d'adjacence à partir de la matrice d'adjacence
+            for(int i = 1; i < this.AdjacencyMatrix.length; i++)
+            {
+                this.AdjacencyListTable[i] = getAdjacencyListFromMatrix(this.AdjacencyListTable[i][0], this.AdjacencyMatrix);
+            }
+        }
     }
 
     //On retourne la matrice d'adjacence de notre graphe
     public int[][] getAdjacencyListMatrix()
     {
         //Si la matrice d'adjacence est vide, alors:
+        this.AdjacencyMatrix = new int[n+1][n+1];
         //Determination de la matrice d'adjacence à partir du tableau de listes d'adjacence
+        for(int i = 1; i < this.AdjacencyListTable.length; i++)
+        {
+            this.AdjacencyMatrix[i] = getMatrixFromAdjacencyList(this.AdjacencyListTable[i][0], this.AdjacencyListTable);
+        }
         return this.AdjacencyMatrix;
     }
 
-    //Fonction main pour initialiser la matrice et le tableau
-    //Initialiser matrice
-    //Initialiser tableau listes adjacences
+    //Fonction main pour initialiser le tableau et executer le programme
+    //Initialiser tableau listes adjacences à partir de n entrée par l'utilisateur
 }
