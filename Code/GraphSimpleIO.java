@@ -215,6 +215,81 @@ public final class GraphSimpleIO{
     // ????????????????????,
     private GraphSimpleIO(){}
 
+    // Extra
+
+    //Fonction pour calculer une liste d'adjacence à partir d'une ligne de la matrice d'adjacence
+    public static int[] getAdjacencyListFromMatrix (int x, int[][] matrix)
+    {
+        
+        int len = matrix.length; 
+        int[] line = getMatrixLine(x, matrix);
+        int [] ret;
+
+        // variables pour compteur les adjacences de la ligne
+        int compteur = 0;
+        int [] tab = new int[len];
+        tab[0] = x;
+        for(int j=1; j<= len ; j++){
+            if(line[j] == 1)
+            {
+                tab[compteur] = j;
+                compteur ++;
+            }
+        }
+        
+        //On cree un tableau de la bonne taille
+        // le compteur est égale au nombre d'élément de la ligne
+        // ajoute 2 case pour le numero de ligne qui est dans la case 0  
+        ret = new int[compteur+1];
+
+        for(int i=0; i<(compteur+1); i++){
+            ret[i] = tab[i];
+        }
+
+        return ret; 
+    }
+
+    //Fonction pour calculer une ligne de la matrice d'adjacence à partir d'une liste d'adjacence 
+    public static int[] getMatrixFromAdjacencyList(int x, int[][] matrix)
+    {
+        
+        int len = matrix.length; 
+        int[] line = getMatrixLine(x, matrix);
+        int [] ret = new int[matrix.length];
+
+        //initialiser la ligne de la matrice 
+        ret[0] = x;
+        for(int i = 1; i < len; i++)
+        {
+            ret[i] = 0;        
+        }
+        
+        //On parcour la liste d'adjacence du sommet x pour trouver les sommets adjacents à celui ci
+        for(int j=1; j<= len ; j++){
+            if(line[j] != 0)
+            {
+                //On met à 1 les sommets adjacents à notre sommet x 
+                ret[line[j]] = 1;
+            }
+        }
+        return ret; 
+    }
+
+    //Fonction qui renvoi la ligne de la matrice par rapport à un sommet x
+    public static int[] getMatrixLine(int x, int[][] matrix)
+    {
+        int index = 0;
+        for(int i = 1; i < matrix.length; i++)
+        {
+            if(x == matrix[i][0])
+            {
+                index = i;
+                break;
+            }
+        }
+        
+        return matrix[index]; 
+    }
 
     
 }

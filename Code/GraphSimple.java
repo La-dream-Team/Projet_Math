@@ -89,7 +89,7 @@ public class GraphSimple{
         }
     }
 
-    //Fonction qui renvoi la ligne de la matrice par rapport à un sommet x
+    /*//Fonction qui renvoi la ligne de la matrice par rapport à un sommet x
     public static int[] getMatrixLine(int x, int[][] matrix)
     {
         int index = 0;
@@ -103,7 +103,7 @@ public class GraphSimple{
         }
         
         return matrix[index]; 
-    }
+    }*/
 
     //Fonction qui renvoi la liste d'adjacence d'un sommet x
     public int[] getAdjacencyList(int x)
@@ -123,7 +123,7 @@ public class GraphSimple{
         return this.AdjacencyListTable[index];
     }
 
-    //Fonction pour calculer une liste d'adjacence à partir d'une ligne de la matrice d'adjacence
+    /*//Fonction pour calculer une liste d'adjacence à partir d'une ligne de la matrice d'adjacence
     public static int[] getAdjacencyListFromMatrix (int x, int[][] matrix)
     {
         
@@ -179,7 +179,7 @@ public class GraphSimple{
             }
         }
         return ret; 
-    }
+    }*/
 
     public boolean isAdjacencyListTableEmpty(int[][] adjacencyListTable)
     {
