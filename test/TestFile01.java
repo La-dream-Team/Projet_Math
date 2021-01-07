@@ -18,7 +18,7 @@ public class TestFile01 {
     }
 
     public static void main (String[] arg) {
-        Sanner stdin, file ;
+        Scanner stdin, file ;
         if (arg.length <= 1) {
             stdin = new Scanner (System.in) ;
             if (arg.length == 0) {
