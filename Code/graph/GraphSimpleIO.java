@@ -1,5 +1,5 @@
 
-package Code;
+package graph;
 
 import java.util.Scanner;
 
@@ -74,7 +74,7 @@ public final class GraphSimpleIO{
     }
 
     //Fonction pour calculer une liste d'adjacence à partir d'une ligne de la matrice d'adjacence
-    public static int[] computeAdjacentyList (int x, int[][] matrix)/*AKA getAdjacencyListFromMatrix*/{
+    public static int[] computeAdjacentyList(int x, int[][] matrix)/*AKA getAdjacencyListFromMatrix*/{
         // declaration des valiable local 
         int len = matrix.length; // on recupère la taille de la matrcice
         int[] line = getLine(x, matrix);
@@ -104,7 +104,7 @@ public final class GraphSimpleIO{
     }
 
     //Fonction pour calculer une ligne de la matrice d'adjacence à partir d'une liste d'adjacence 
-    public static int[] computeAdjacentyMatrix(int x, int[][] matrix) /*AKA getMatrixFromAdjacencyList*/
+    public static int[] computeAdjacencyMatrix(int x, int[][] matrix) /*AKA getMatrixFromAdjacencyList*/
     {
         
         int len = matrix.length; 

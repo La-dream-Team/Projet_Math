@@ -1,4 +1,4 @@
-package Code;
+package graph;
 
 public class GraphSimple{
     // TP2
