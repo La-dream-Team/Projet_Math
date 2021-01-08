@@ -16,16 +16,53 @@ public class BFS{
         this.parent = new int[n+1];
     }
 
-    //Methods
+    // getter / setter
+    
+    // couleurs 
+    private color getColor(int x)
+    {
+        return this.color[x];
+    }
 
-    //Methode pour initialiser le tableau de couleurs
+    private void setColor(int x, color c)
+    {
+        this.color[x] = c;
+    }
+
+    // distance
+    private int getDistance(int x)
+    {
+        return this.distance[x];
+    }
+
+    private void setDistance(int x, int dist)
+    {
+        this.distance[x] = dist;
+    }
+
+    // parent
+    private int getparent(int x)
+    {
+        return this.parent[x];
+    }
+
+    private void setParent(int x, int par)
+    {
+        this.parent[x] = par;
+    }
+
+    // Methods
+
+    // Methode pour initialiser le tableau de couleurs
     public void initializeColors()
     {
         for(i = 1; i < this.color.length; i++)
         {
-            this.color[i] = color.GREEN;
+            this.setColor(i, color.GREEN);
         }
     }
+
+
 
     //Methode pour executer l'algorithme de parcours en largeur
     public void algorithm()
