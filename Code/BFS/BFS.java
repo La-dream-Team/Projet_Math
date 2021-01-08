@@ -62,11 +62,18 @@ public class BFS{
         }
     }
 
-
+    // Methode pour generer un sommet d'origin aleatoire
+    public int randomVertex(int n)
+    {
+        int r = (int)((Math.random()*n) + 1);
+        return r;
+    }
+    
 
     //Methode pour executer l'algorithme de parcours en largeur
-    public void algorithm()
+    public void algorithm(int n)
     {
         initializeColors();
+        int r = randomVertex(n);
     }
 }
