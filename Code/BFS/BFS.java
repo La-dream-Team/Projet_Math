@@ -69,7 +69,7 @@ public class BFS{
     // Avant de commencer l'algorithme il faut appeler ce methode
     public void initializeColors()
     {
-        for(i = 1; i < this.color.length; i++)
+        for(int i = 1; i < this.color.length; i++)
         {
             this.setColor(i, color.GREEN);
         }
@@ -79,53 +79,56 @@ public class BFS{
 
     // Methode pour executer l'algorithme de parcours en largeur
     // int r = randomVertex(n); r est le sommet d'origine du parcour
-    public void algorithmForConnectedGraph(int n, int r)
+    //initializeColors();
+    public void algorithmForConnectedGraph(int r)
     {
-        QueueBounded<Integer> F = new QueueBounded<Integer>(n);
-        //initializeColors();
+        QueueBounded<Integer> F = new QueueBounded<Integer>(graph.order());
         F.add(r);
-        setDistance(r, 0);
-        setColor(r, color.ORANGE);
-        setParent(r, 0);
+        this.setDistance(r, 0);
+        this.setColor(r, color.ORANGE);
+        this.setParent(r, 0);
         while(!F.isEmpty())
         {
             int origin = F.extract();
             for(int i : graph.getAdjacencyList(origin))
             {
-                if(getColor(i) == color.GREEN)
+                if(this.getColor(i) == color.GREEN)
                 {
-                    setDistance(i, getDistance(origin)+1);
-                    setColor(i, color.ORANGE);
-                    setParent(i, origin);
+                    this.setDistance(i, this.getDistance(origin)+1);
+                    this.setColor(i, color.ORANGE);
+                    this.setParent(i, origin);
                     F.add(i);
                 }
             }
-            setColor(origin, color.RED);
+            this.setColor(origin, color.RED);
         }
     }
 
     // g.
 
     // Methode pour executer l'algorithme de parcours en largeur pour un graphe non connexe
-    public void algorithmForUnconnectedGraph(int n)
+    //initializeColors();
+    public void algorithmForUnconnectedGraph()
     {
-        for(int i = 1; i < graph.order(); i++)
+        for(int i = 1; i < graph.order()+1; i++)
         {
-            if(getColor(i) == color.GREEN)
+            if(this.getColor(i) == color.GREEN)
             {
-                algorithmForConnectedGraph(n, i);
+                algorithmForConnectedGraph(i);
             }
         }
     }
 
+
     // Exercice 2
 
+    //Methode à executer après l'algorithme de parcours en longueur pour tester si un graph est connexe ou pas
     public boolean isConnectedGraph()
     {
         boolean ret = true;
-        for(int i = 1; i < graph.order(); i++)
+        for(int i = 1; i < graph.order()+1; i++)
         {
-            if(getColor(i) != color.RED)
+            if(this.getColor(i) != color.RED)
             {
                 ret = false;
             }
@@ -133,12 +136,60 @@ public class BFS{
         return ret;
     }
 
+    
     // Exercice 3
 
-    /*
-    public  relatedComponents(int n)
+    //Si le graphe est connexe
+    public void RC1(int r, int[]cc)
     {
-        int[] cc = new int[n+1];
+        QueueBounded<Integer> F = new QueueBounded<Integer>(graph.order());
+        F.add(r);
+        this.setDistance(r, 0);
+        this.setColor(r, color.ORANGE);
+        this.setParent(r, 0);
+        cc[r] = r;
+        while(!F.isEmpty())
+        {
+            int origin = F.extract();
+            for(int i : graph.getAdjacencyList(origin))
+            {
+                if(this.getColor(i) == color.GREEN)
+                {
+                    this.setDistance(i, this.getDistance(origin)+1);
+                    this.setColor(i, color.ORANGE);
+                    this.setParent(i, origin);
+                    cc[i] = r;
+                    F.add(i);
+                }
+            }
+            this.setColor(origin, color.RED);
+        }
     }
-    */
+
+    //Si le graphe n'est pas connexe
+    public void RC2(int[] cc)
+    {
+        for(int i = 1; i < graph.order()+1; i++)
+        {
+            if(this.getColor(i) == color.GREEN)
+            {
+                RC1(i, cc);
+            }
+        }
+    }
+    
+    //Methode pour calculer les composantes connexes d'un graphe 
+    public void relatedComponents()
+    {
+        int[] cc = new int[graph.order()+1];
+        RC2(cc);
+        System.out.print("cc(x) :");
+        for(int i = 1; i < graph.order()+1; i++)
+        {
+            System.out.print("");
+            System.out.print(cc[i]);
+            System.out.print("");
+        }
+    }
+    
 }
