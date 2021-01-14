@@ -80,7 +80,7 @@ public class BFS{
     // Methode pour executer l'algorithme de parcours en largeur
     // int r = randomVertex(n); r est le sommet d'origine du parcour
     //initializeColors();
-    public void algorithmForConnectedGraph(int r)
+    public void algorithmForConnectedGraphV1(int r)
     {
         QueueBounded<Integer> F = new QueueBounded<Integer>(graph.order());
         F.add(r);
@@ -108,13 +108,13 @@ public class BFS{
 
     // Methode pour executer l'algorithme de parcours en largeur pour un graphe non connexe
     //initializeColors();
-    public void algorithmForUnconnectedGraph()
+    public void algorithmForUnconnectedGraphV1()
     {
         for(int i = 1; i < graph.order()+1; i++)
         {
             if(this.getColor(i) == color.GREEN)
             {
-                algorithmForConnectedGraph(i);
+                algorithmForConnectedGraphV1(i);
             }
         }
     }
@@ -140,7 +140,7 @@ public class BFS{
     // Exercice 3
 
     //Si le graphe est connexe
-    public void RC1(int r, int[]cc)
+    public void algorithmForConnectedGraphV2(int r, int[]cc)
     {
         QueueBounded<Integer> F = new QueueBounded<Integer>(graph.order());
         F.add(r);
@@ -167,13 +167,13 @@ public class BFS{
     }
 
     //Si le graphe n'est pas connexe
-    public void RC2(int[] cc)
+    public void algorithmForUnconnectedGraphV2(int[] cc)
     {
         for(int i = 1; i < graph.order()+1; i++)
         {
             if(this.getColor(i) == color.GREEN)
             {
-                RC1(i, cc);
+                algorithmForConnectedGraphV2(i, cc);
             }
         }
     }
@@ -182,7 +182,7 @@ public class BFS{
     public void relatedComponents()
     {
         int[] cc = new int[graph.order()+1];
-        RC2(cc);
+        algorithmForUnconnectedGraphV2(cc);
         System.out.print("cc(x) :");
         for(int i = 1; i < graph.order()+1; i++)
         {
