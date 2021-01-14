@@ -13,6 +13,19 @@ public class GraphSimple{
     {
         this.AdjacencyMatrix = new int[n+1][n+1];
         this.AdjacencyListTable = new int[n+1][1]; //N sommets et 0 aretes (new int[n+1][])
+        
+        this.initialize();
+    }
+
+    // inisialisation de la table de liste d'adjcence 
+    public void initialize()
+    {
+        int len = this.AdjacencyListTable.length;
+
+        for(int i=1; i < len ; i++)
+        {
+            this.AdjacencyListTable[i][0] = i;
+        }
     }
 
     // b)
