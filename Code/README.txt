@@ -25,3 +25,7 @@ Exercice 2
 h )
 je ne comprend pas pourquoi avoir un constructeur sachant 
 qu'il y a que des methodes static dans la class graphSimpleIO.
+
+
+Partie graph (GrapheSimple et GrapheSimpleIO) : Code qui nous permet de traiter 
+la matrice d'adjacence et le tableau de listes d'adjacences d'un graphe.
