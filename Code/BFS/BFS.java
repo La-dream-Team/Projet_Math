@@ -193,7 +193,7 @@ public class BFS{
     }
 
     //Si le graphe n'est pas connexe et on veut trouver ses composantes connexes
-    public void algorithmForUnconnectedGraphV2(GrapheSimple graph, int[] cc)
+    public void algorithmForUnconnectedGraphV2(GraphSimple graph, int[] cc)
     {
         //Pour tous les sommets du graphe on fait :
         for(int i = 1; i < graph.order()+1; i++)

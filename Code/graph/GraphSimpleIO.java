@@ -250,13 +250,7 @@ public final class GraphSimpleIO{
 
 
     // h)
-    // ????????????????????,
+    // il y a deja un constructeur identique par defaut en java 
     private GraphSimpleIO(){}
 
-
-    
-
-    
-
-    
 }

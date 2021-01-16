@@ -3,6 +3,7 @@ package test;
 import java.util.Scanner;
 import graph.GraphSimple;
 import graph.GraphSimpleIO;
+import BFS.BFS;
 
 public class main {
     public static void main(String[] args) {
@@ -21,8 +22,9 @@ public class main {
             int len;
 
             // il faut initialiser la classe GraphSimpleIO()
-            GraphSimpleIO func = new GraphSimpleIO();
-            initialize();
+            GraphSimpleIO.initialize();
+
+            System.out.println("entrez l'ordre du graph ");
 
             // on recupère la taille de la matrice
             len = GraphSimpleIO.getInt();
@@ -43,9 +45,20 @@ public class main {
             }
             else
             {
-                // l'utilisateur entre un matrice d'adjacence
+                // l'utilisateur entre un tableau de liste d'adjacence
+                currentGraph.scanAdjavencyList();
             }
-  
+            
+            // on cree et initialise la recherche
+            BFS currentBFS = new BFS(currentGraph.order());
+            currentBFS.initializeColors();
+
+            // on regarde si le graph est connexe
+            System.out.println("On cherhe a savoir si le graphe donée est connexe.");
+            if(currentBFS.isConnectedGraph(currentGraph)
+                System.out.println("Le graphe est connexe !");
+            else
+                System.out.println("Le graphe n'est pas connexe !");
         }
 
     }
