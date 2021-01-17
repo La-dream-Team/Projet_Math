@@ -32,7 +32,7 @@ Fait par RUCHER Thibault et RODRIGUEZ Daniel
 
 Structure du projet 
 
-IMPORTANT : Nous avons structure le projet et rangé le code dans le même ordre utilisé dans les sujets.
+IMPORTANT : Nous avons structuré le projet et rangé le code dans le même ordre utilisé dans les sujets.
 
 Dossier BFS (ou Breadth-first search) :
  Partie dedié à l'algorithme de parcours en largeur d'un graphe. Dedans ce dossier on trouve 3 fichiers :
