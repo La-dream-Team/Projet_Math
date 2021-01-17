@@ -51,4 +51,18 @@ Dossier test :
   - Le fichier main, utilisé pour tester le fichier BFS à l'aide des fichiers contenus dans le dossier graph.
   - Le fichier TestFile01, utilisé pour tester le fichier GrapheSimple à l'aide du fichier GrapheSimpleIO.
 
+Utilisation du programme
+
+ Pour vérifier le fonctionnement du code nous avons créé un petit programme de test dans le dossier "test" appelé "main".
+ Une fois exécuté le fichier, nous demandons à l'utilisateur d'entrer initialement un entier compris entre 0 et 2 :
+  - Le 0 correspond à la sortie du programme.
+  - Le 1 correspond à entrer le graphe à traiter sous forme de matrice d'adjacence.
+  - Le 2 correspond à entrer le graphe à traiter sous forme de tableau de listes d'adjacence.
+ Une fois que cela est fait, l'utilisateur devra entrer l'ordre du graphe voulu. 
+ Puis il devra entrer le graphe sous la forme choisie précédemment.
+ Finalement, une fois que l'utilisateur a fini d’entrer toutes ces données, nous demandons à l’utilisateur d’entrer 
+ le traitement qu’il veut exercer sur le graphe (parcours en largeur ou test de connexité) :
+  - S’il entre X, nous exécutons l’algorithme de parcours en largeur du graphe à partir du sommet voulu par l’utilisateur.
+  - S’il entre Y, nous vérifions juste si le graphe entré correspond avec un graphe connexe ou pas et nous afficherons le résultat.  
+
 ------------------------------------------------------------------------------------------------------------------
