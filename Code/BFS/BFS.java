@@ -99,16 +99,18 @@ public class BFS{
             //On extrait le sommet de la file d'attente
             int origin = F.extract();
             //Pour tous les sommets adjacents au sommet qu'on vient d'extraire de la file d'attente on fait :
-            for(int i : graph.getAdjacencyList(origin))
+            int[] tabAdj = graph.getAdjacencyList(origin);
+            for(int i = 1; i < tabAdj.length; i++)
             {
+                int j = tabAdj[i];
                 //Si sa couleur est vert
-                if(this.getColor(i) == Color.GREEN)
+                if(this.getColor(j) == Color.GREEN)
                 {
                     //On l'ajoute dans la file d'attente
-                    this.setDistance(i, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
-                    this.setColor(i, Color.ORANGE);
-                    this.setParent(i, origin);
-                    F.add(i);
+                    this.setDistance(j, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
+                    this.setColor(j, Color.ORANGE);
+                    this.setParent(j, origin);
+                    F.add(j);
                 }
             }
             //On met en rouge le sommet qu'on a extrait de la file d'attente
@@ -140,6 +142,10 @@ public class BFS{
     //Methode à executer après l'algorithme de parcours en longueur pour tester si un graph est connexe ou pas
     public boolean isConnectedGraph(GraphSimple graph)
     {
+        //On initialise les couleurs
+        this.initializeColors();
+        //On fait un seul parcours en largeur depuis le sommet 1 pour voir si le graphe est connexe
+        this.algorithmForConnectedGraphV1(1, graph);
         boolean ret = true;
         //Pour tout sommet appartenant au graphe on fait :
         for(int i = 1; i < graph.order()+1; i++)
@@ -149,6 +155,7 @@ public class BFS{
             {
                 //Cela signifie que le graphe n'est pas connexe
                 ret = false;
+                break;
             }
         }
         return ret;
@@ -167,24 +174,29 @@ public class BFS{
         this.setDistance(r, 0);
         this.setColor(r, Color.ORANGE);
         this.setParent(r, 0);
-        cc[r] = r; //Le sommet racine du composante connexe est le sommet d'origine
+        //cc[r] = r; //Le sommet racine du composante connexe est le sommet d'origine
         //Pendant que la file d'attente n'est pas vide
         while(!F.isEmpty())
         {
             //On extrait le sommet de la file d'attente
             int origin = F.extract();
             //Pour tous les sommets adjacents au sommet qu'on vient d'extraire de la file d'attente on fait :
-            for(int i : graph.getAdjacencyList(origin))
+            int[] tabAdj = graph.getAdjacencyList(origin);
+            for(int i = 1; i < tabAdj.length; i++)
             {
+                int j = tabAdj[i];
                 //Si sa couleur est vert
-                if(this.getColor(i) == Color.GREEN)
+                if(this.getColor(j) == Color.GREEN)
                 {
                     //On l'ajoute dans la file d'attente
-                    this.setDistance(i, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
-                    this.setColor(i, Color.ORANGE);
-                    this.setParent(i, origin);
-                    cc[i] = r; //Le sommet racine du composante connexe est le sommet d'origine
-                    F.add(i);
+                    this.setDistance(j, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
+                    this.setColor(j, Color.ORANGE);
+                    this.setParent(j, origin);
+                    if(cc[j] > r)
+                    {
+                       cc[j] = r; //Le sommet racine du composante connexe est le sommet d'origine 
+                    }
+                    F.add(j);
                 }
             }
             //On met en rouge le sommet qu'on a extrait de la file d'attente
@@ -195,8 +207,12 @@ public class BFS{
     //Si le graphe n'est pas connexe et on veut trouver ses composantes connexes
     public void algorithmForUnconnectedGraphV2(GraphSimple graph, int[] cc)
     {
+        for(int i = 1; i < cc.length; i++)
+        {
+            cc[i] = i;
+        }
         //Pour tous les sommets du graphe on fait :
-        for(int i = 1; i < graph.order()+1; i++)
+        for(int i = 1; i < (graph.order()+1); i++)
         {
             //Si la couleur du sommet est vert alors
             if(this.getColor(i) == Color.GREEN)
@@ -212,16 +228,17 @@ public class BFS{
     {
         //On crée le tableau de composantes connexes
         int[] cc = new int[graph.order()+1];
+        //On initialise les couleurs
+        this.initializeColors();
         //On execute l'algorithme de parcours en largeur pour trouver les composantes connexes du graphe
         this.algorithmForUnconnectedGraphV2(graph, cc);
         //On affiche le tableau de composantes connexes
         System.out.print("cc(x) :");
         for(int i = 1; i < graph.order()+1; i++)
         {
-            System.out.print("");
-            System.out.print(cc[i]);
-            System.out.print("");
+            System.out.print(" " + cc[i] + " ");
         }
+        System.out.print("\n");
     }
     
 }

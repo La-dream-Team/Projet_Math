@@ -54,19 +54,7 @@ public class GraphSimple{
     //Fonction qui renvoi la liste d'adjacence d'un sommet x
     public int[] getAdjacencyList(int x)
     {
-        int index = 0;
-        if(isVertex(x))
-        {
-            for(int i = 1; i < this.AdjacencyListTable.length+1; i++)
-            {
-                if(x == this.AdjacencyListTable[i][0])
-                {
-                    index = i;
-                    break;
-                }
-            }
-        }
-        return this.AdjacencyListTable[index];
+        return this.AdjacencyListTable[x];
     }
 
     // c)
@@ -129,7 +117,7 @@ public class GraphSimple{
         //Determination de la matrice d'adjacence à partir du tableau de listes d'adjacence
         for(int i = 1; i < this.AdjacencyListTable.length; i++)
         {
-            this.AdjacencyMatrix[i] = GraphSimpleIO.computeAdjacencyMatrix(this.AdjacencyListTable[i][0], this.AdjacencyListTable);
+            this.AdjacencyMatrix[i] = GraphSimpleIO.computeAdjacencyMatrix(i, this.AdjacencyListTable);
         }
     }
 
@@ -138,7 +126,7 @@ public class GraphSimple{
         //Determination du tableau de listes d'adjacence à partir de la matrice d'adjacence
         for(int i = 1; i < this.AdjacencyMatrix.length; i++)
         {
-            this.AdjacencyListTable[i] = GraphSimpleIO.computeAdjacentyList(this.AdjacencyListTable[i][0], this.AdjacencyMatrix);
+            this.AdjacencyListTable[i] = GraphSimpleIO.computeAdjacentyList(i, this.AdjacencyMatrix);
         }
     }
 
@@ -147,9 +135,11 @@ public class GraphSimple{
     {
         // on verifie que le tableau de la liste d'adjacence est bien vide et initialisé
         if(this.isAdjacencyListTableEmpty(this.AdjacencyListTable))
-        { 
+        {
             this.AdjacencyListTable = GraphSimpleIO.getgraph(this.AdjacencyListTable);
         }
+        else
+            System.err.println("Pas d'initialisation");
     }
     
     //Complément de sujet 1
@@ -216,7 +206,7 @@ public class GraphSimple{
 
 
     //On retourne le tableau de liste d'adjacence
-    public int[][] getAdjacencyList()
+    public int[][] getTabAdjacencyList()
     { 
         //Renvoi la matrice d'adjacence
         return this.AdjacencyListTable;

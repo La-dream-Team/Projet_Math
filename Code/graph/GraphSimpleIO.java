@@ -81,10 +81,10 @@ public final class GraphSimpleIO{
         int [] ret;
 
         // variables pour compteur les adjacences de la ligne
-        int compteur = 0;
+        int compteur = 1;
         int [] tab = new int[len];
         tab[0] = x;
-        for(int j=1; j<= len ; j++){
+        for(int j=1; j< len ; j++){
             if(line[j] != 0){
                 tab[compteur] = j;
                 compteur += 1;
@@ -172,6 +172,7 @@ public final class GraphSimpleIO{
 
         // len-1 tours de boucle
         for(int i=1 ; i< len ; i++){
+            compteur =  0;
             // variavble de la boucle
             current = scan.nextInt();
 
@@ -251,6 +252,7 @@ public final class GraphSimpleIO{
 
     // h)
     // il y a deja un constructeur identique par defaut en java 
+    // il faut declarer um constructeur prive pour pas que l'utilisateur en cree
     private GraphSimpleIO(){}
 
 }
