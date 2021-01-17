@@ -1,24 +1,3 @@
-exemple 
-1 0 0
-0 1 0
-0 0 1
-
-Matrice d'adjacence :
-Elle est representé par un tableau de tableau de taille 4x4.
-
-0 0 0 0 
-0 1 0 0
-0 0 1 0
-0 0 0 1
-
-Liste d'adjacence :
-La première dimenssion est de 4 mais la seconde est de taille variable
-......
-1 1
-2 2
-2 3
-
-
 --------------------------------------------------------------------------------------------------------------------------------------
 
 Fait par RUCHER Thibault et RODRIGUEZ Daniel
@@ -47,7 +26,8 @@ Dossier test :
 Utilisation du programme
 
  Pour vérifier le fonctionnement du code nous avons créé un petit programme de test dans le dossier "test" appelé "main".
- Pour 
+ Pour faciliter l'utilisation du même, nous avons ajouté un fichier .jar exécutable en console grâce à la commande suivante :
+ 						"java -jar graphe.jar"
  Nous demandons à l’utilisateur d'entrer l’ordre du graphe qu’il veut traiter. 
  Une fois que cela est fait, l’utilisateur devra rentrer le graphe sous forme de tableau de liste d’adjacence
  (chaque ligne du tableau entré devra finir par 0).

@@ -23,7 +23,7 @@ public class main {
 
         GraphSimple currentGraph = new GraphSimple(len);
 
-        System.out.println("Entrez les listes d'adjacences pour chaque sommets \nVeuillez terminer chaque liste par 0 et taper 0 pour arreter la saisi.");
+        System.out.println("Entrez la liste d'adjacence pour chaque sommet de votre graphe. \nVeuillez terminer chaque liste par 0 et taper 0 pour arreter la saisie.");
         // l'utilisateur entre un tableau de liste d'adjacence
         currentGraph.scanAdjavencyList();
         
@@ -40,7 +40,7 @@ public class main {
         else
         {
             System.out.println("Le graphe n'est pas connexe !");
-            System.out.println("On regarde combien il y a de composantes connexes");
+            System.out.println("On regarde combien il y a de composantes connexes :");
             //on regarde combien il y a de composantes connexes
             currentBFS.relatedComponents(currentGraph);
         }
