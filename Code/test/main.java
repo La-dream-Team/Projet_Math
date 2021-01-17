@@ -55,7 +55,7 @@ public class main {
 
             // on regarde si le graph est connexe
             System.out.println("On cherhe a savoir si le graphe donée est connexe.");
-            if(currentBFS.isConnectedGraph(currentGraph)
+            if(currentBFS.isConnectedGraph(currentGraph))
                 System.out.println("Le graphe est connexe !");
             else
                 System.out.println("Le graphe n'est pas connexe !");

@@ -8,7 +8,7 @@ public class BFS{
     // b.
 
     // Attributs
-    private color[] color;
+    private Color[] color;
     private int[] distance;
     private int[] parent;
     
@@ -16,7 +16,7 @@ public class BFS{
 
     public BFS (int n)
     {
-        this.color = new color[n+1];
+        this.color = new Color[n+1];
         this.distance = new int[n+1];
         this.parent = new int[n+1];
     }
@@ -26,12 +26,12 @@ public class BFS{
     // Getters && Setters
     
     // Color
-    private color getColor(int x)
+    private Color getColor(int x)
     {
         return this.color[x];
     }
 
-    private void setColor(int x, color c)
+    private void setColor(int x, Color c)
     {
         this.color[x] = c;
     }
@@ -75,7 +75,7 @@ public class BFS{
         for(int i = 1; i < this.color.length /*graph.order()+1*/; i++)
         {
             //On met la couleur du sommet à vert
-            this.setColor(i, color.GREEN);
+            this.setColor(i, Color.GREEN);
         }
     }
 
@@ -91,7 +91,7 @@ public class BFS{
         //On ajoute dans la file le sommet d'origine du parcours
         F.add(r);
         this.setDistance(r, 0);
-        this.setColor(r, color.ORANGE);
+        this.setColor(r, Color.ORANGE);
         this.setParent(r, 0);
         //Pendant que la file d'attente n'est pas vide
         while(!F.isEmpty())
@@ -102,17 +102,17 @@ public class BFS{
             for(int i : graph.getAdjacencyList(origin))
             {
                 //Si sa couleur est vert
-                if(this.getColor(i) == color.GREEN)
+                if(this.getColor(i) == Color.GREEN)
                 {
                     //On l'ajoute dans la file d'attente
                     this.setDistance(i, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
-                    this.setColor(i, color.ORANGE);
+                    this.setColor(i, Color.ORANGE);
                     this.setParent(i, origin);
                     F.add(i);
                 }
             }
             //On met en rouge le sommet qu'on a extrait de la file d'attente
-            this.setColor(origin, color.RED);
+            this.setColor(origin, Color.RED);
         }
     }
 
@@ -126,7 +126,7 @@ public class BFS{
         for(int i = 1; i < graph.order()+1; i++)
         {
             //Si la couleur du sommet est vert alors
-            if(this.getColor(i) == color.GREEN)
+            if(this.getColor(i) == Color.GREEN)
             {
                 //On execute l'algortihme de parcours en largeur en utilisant le sommet i comme sommet d'origine
                 this.algorithmForConnectedGraphV1(i, graph);
@@ -145,7 +145,7 @@ public class BFS{
         for(int i = 1; i < graph.order()+1; i++)
         {
             //Si la couleur du sommet n'est pas rouge
-            if(this.getColor(i) != color.RED)
+            if(this.getColor(i) != Color.RED)
             {
                 //Cela signifie que le graphe n'est pas connexe
                 ret = false;
@@ -165,7 +165,7 @@ public class BFS{
         //On ajoute dans la file le sommet d'origine du parcours
         F.add(r);
         this.setDistance(r, 0);
-        this.setColor(r, color.ORANGE);
+        this.setColor(r, Color.ORANGE);
         this.setParent(r, 0);
         cc[r] = r; //Le sommet racine du composante connexe est le sommet d'origine
         //Pendant que la file d'attente n'est pas vide
@@ -177,18 +177,18 @@ public class BFS{
             for(int i : graph.getAdjacencyList(origin))
             {
                 //Si sa couleur est vert
-                if(this.getColor(i) == color.GREEN)
+                if(this.getColor(i) == Color.GREEN)
                 {
                     //On l'ajoute dans la file d'attente
                     this.setDistance(i, this.getDistance(origin)+1); //Distance à l'origine = distance du sommet adjacent + 1
-                    this.setColor(i, color.ORANGE);
+                    this.setColor(i, Color.ORANGE);
                     this.setParent(i, origin);
                     cc[i] = r; //Le sommet racine du composante connexe est le sommet d'origine
                     F.add(i);
                 }
             }
             //On met en rouge le sommet qu'on a extrait de la file d'attente
-            this.setColor(origin, color.RED);
+            this.setColor(origin, Color.RED);
         }
     }
 
@@ -199,7 +199,7 @@ public class BFS{
         for(int i = 1; i < graph.order()+1; i++)
         {
             //Si la couleur du sommet est vert alors
-            if(this.getColor(i) == color.GREEN)
+            if(this.getColor(i) == Color.GREEN)
             {
                 //On execute l'algortihme de parcours en largeur en utilisant le sommet i comme sommet d'origine
                 this.algorithmForConnectedGraphV2(i, graph, cc);

@@ -1,15 +1,22 @@
+package BFS;
+
 import java.lang.RuntimeException ;
 import java.util.Scanner ;
+
 public class QueueBounded<E> {
   private E[] element ;
   private int input ;
   private int count ;
+  
+  
   @SuppressWarnings("unchecked")
   public QueueBounded (int n) {
     element = (E[]) new Object[n] ;
     input = 0 ;
     count = 0 ;
   }
+  
+  
   public void add(E e) {
     if (count == this.element.length)
       throw new RuntimeException ("Overflow") ;
@@ -17,12 +24,14 @@ public class QueueBounded<E> {
     this.input = (this.input + 1) % this.element.length ;
     this.count ++ ;
   }
+  
     // @SuppressWarnings("unchecked")
   public E head () {
     if (count == 0)
       throw new RuntimeException ("Underflow") ;
     return this.element[(input-count) % this.element.length] ;
   }
+  
     // @SuppressWarnings("unchecked")
   public E extract () {
     if (count == 0)
@@ -33,26 +42,33 @@ public class QueueBounded<E> {
     this.doDrop() ;
     return value ;
   }
+  
   public void drop () {
     if (count == 0)
       throw new RuntimeException ("Underflow") ;
     this.doDrop() ;
   }
+  
   private void doDrop() {
     this.count -- ;
   }
+  
   public boolean isEmpty() {
     return this.count == 0 ;
   }
+  
   public boolean isFull() {
     return this.count == this.element.length ;
   }
+  
   public int length () {
     return this.count ;
   }
+  
   public int size () {
     return this.element.length ;
   }
+  
   public static void main (String[] arg) {
     int size = Integer.parseInt(arg[0]) ;
     QueueBounded<Integer> queue = new QueueBounded<Integer>(size) ;
